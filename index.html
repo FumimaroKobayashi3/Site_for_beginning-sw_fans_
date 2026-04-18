@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SW Terminal v1.0</title>
+    <script defer src="main.js"></script>
+    <style>
+        /* 1. Базовые настройки экрана */
+        body {
+            background-color: #000; 
+            color: #4df1f1; 
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            text-transform: uppercase; 
+        }
+
+      
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        
+        h1 {
+            color: #4df1f1;
+            text-shadow: 0 0 10px #4df1f1; 
+            letter-spacing: 3px;
+            border-bottom: 2px solid #4df1f1;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 4. Контейнер-карточка (Рамка терминала) */
+        .card {
+            border: 2px solid #4df1f1;
+            box-shadow: 0 0 15px rgba(77, 241, 241, 0.3); /* Внешнее свечение блока */
+            padding: 20px;
+            margin: 10px;
+            width: 90%;
+            max-width: 600px;
+            background: rgba(0, 20, 20, 0.5); /* Полупрозрачный темный фон */
+        }
+
+        /* 5. Элементы формы (Инпуты и кнопки) */
+        input, select, button {
+            background: transparent; /* Прозрачный фон внутри */
+            border: 1px solid #4df1f1;
+            color: #4df1f1;
+            padding: 10px;
+            font-family: inherit;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        /* Эффект при наведении на кнопку */
+        button:hover {
+            background: #4df1f1;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 0 10px #4df1f1;
+        }
+
+        /* 6. Список результатов */
+        #results-list {
+            list-style: none; /* Убираем стандартные точки */
+            padding: 0;
+            width: 100%;
+        }
+
+        #results-list li {
+            border: 1px dashed #4df1f1;
+            margin: 5px 0;
+            padding: 10px;
+            background: rgba(77, 241, 241, 0.1);
+        }
+
+        /* 7. Сообщения об ошибках или статусе */
+        .status-msg {
+            color: #ff4d4d; /* Красный для ошибок */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>TERMINAL_ACCESS: STAR_WARS_DB</h1>
+    </div>
+
+    <div class="card">
+        <!-- Форма поиска -->
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="ВВЕДИТЕ ЗАПРОС..." class="search-input">
+            
+            <select id="category-select">
+                <option value="people">ПЕРСОНАЖИ (PEOPLE)</option>
+                <option value="planets">ПЛАНЕТЫ (PLANETS)</option>
+            </select>
+
+            <button type="submit" class="search-button">ИНИЦИИРОВАТЬ ПОИСК</button>
+        </form>
+    </div>
+
+    <!-- Контейнер для вывода результатов -->
+    <div class="card">
+        <div id="status-display" class="status-msg"></div>
+        <ul id="results-list">
+            <!-- Сюда скрипт будет добавлять <li> -->
+        </ul>
+    </div>
+
+</body>
+</html>
